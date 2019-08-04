@@ -3,6 +3,7 @@
     <div class="inner">
       <app-header />
       <main class="main">
+        <app-navi />
         <slot />
         <div class="todos">
           <slot name="todos" />
@@ -16,11 +17,13 @@
 <script>
 import Header from 'TodoVuexDir/components/Header';
 import Footer from 'TodoVuexDir/components/Footer';
+import Navi from 'TodoVuexDir/components/Navi';
 
 export default {
   components: {
     appHeader: Header,
     appFooter: Footer,
+    appNavi: Navi,
   },
 };
 </script>

@@ -15,8 +15,8 @@ const store = new Vuex.Store({
       detail: '',
       completed: '',
     },
-    errorMessage: 'エラーが起きました。',
-    emptyMessage: 'やることリストは空です。',
+    errorMessage: '',
+    emptyMessage: '',
   },
   getters: {
     completedTodos: (state) => state.todos.filter((todo) => todo.completed),
@@ -89,6 +89,7 @@ const store = new Vuex.Store({
         commit('getTodos', data.todos);
       }).catch((err) => {
         commit('showError', err.response);
+        commit('setEmptyMessage', err.routeName);
       });
     },
     addTodo({ commit, state }) {
