@@ -110,6 +110,7 @@ const store = new Vuex.Store({
       });
       axios.post('http://localhost:3000/api/todos/', postTodo).then(({ data }) => {
         commit('addTodo', data);
+        commit('hideError', data);
       }).catch((err) => {
         commit('showError', err.response);
       });
@@ -145,6 +146,7 @@ const store = new Vuex.Store({
         detail: state.targetTodo.detail,
       }).then(({ data }) => {
         commit('editTodo', data);
+        commit('hideError', data);
       }).catch((err) => {
         commit('showError', err.response);
       });
