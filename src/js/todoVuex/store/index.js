@@ -135,6 +135,13 @@ const store = new Vuex.Store({
     },
     editTodo({ commit, state }) {
       const targetTodo = state.todos.find(todo => todo.id === state.targetTodo.id);
+      if (!state.targetTodo.title || !state.targetTodo.detail) {
+        commit({
+          type: 'showError',
+          data: 'タイトルと内容はどちらも必須項目です。',
+        });
+        return;
+      }
       if (
         targetTodo.title === state.targetTodo.title
         && targetTodo.detail === state.targetTodo.detail
