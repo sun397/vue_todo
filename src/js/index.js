@@ -18,7 +18,7 @@ import myApp from 'TodoVuexDir';
 Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
-  mode: 'history',
+  mode: 'history', //オプション
 });
 
 new Vue({

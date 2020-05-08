@@ -58,7 +58,7 @@ export default {
       this.$store.dispatch('showEditor', todo);
     },
     deleteTodo: function(todo) {
-      this.$store.dispatch('deleteTodo', todo);
+      this.$store.dispatch('deleteTodo', todo.id);
     },
   },
 };
