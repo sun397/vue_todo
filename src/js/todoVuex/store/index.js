@@ -27,8 +27,6 @@ const store = new Vuex.Store({
   mutations: {
     setTodoFilter(state, routeName) {
       state.todoFilter = routeName;
-      state.emptyMessage = '';
-      state.emptyMessage = '';
     },
     setEmptyMessage(state, routeName) {
       if (routeName === 'completedTodos') {

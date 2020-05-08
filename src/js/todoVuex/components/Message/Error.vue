@@ -2,8 +2,6 @@
   <div v-if="errorMessage.length" class="error">
     <p class="error__text">{{ errorMessage }}</p>
   </div>
-  <div else>
-  </div>
 </template>
 
 <script>
