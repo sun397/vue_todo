@@ -24,28 +24,28 @@ export default {
     appRegister: Register,
   },
   computed: {
-    todoFilter: function() {
+    todoFilter: function todoFilter() {
       return this.$store.state.todoFilter;
     },
-    todos: function() {
+    todos: function todos() {
       if (this.todoFilter === 'allTodos') {
         return this.$store.state.todos;
       }
       return this.$store.getters[this.todoFilter];
     },
-    errorMessage: function() {
+    errorMessage: function errorMessage() {
       return this.$store.state.errorMessage;
     },
   },
   watch: {
-    todos: function(todos) {
+    todos: function todo(todos) {
       if (!todos.length) this.$store.dispatch('setEmptyMessage', this.todoFilter);
     },
-    $route: function(to) {
+    $route: function $route(to) {
       this.$store.dispatch('setTodoFilter', to.name);
     },
   },
-  created: function() {
+  created: function created() {
     this.$store.dispatch('getTodos');
     this.$store.dispatch('setTodoFilter', this.$route.name);
   },

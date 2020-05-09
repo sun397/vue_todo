@@ -9,13 +9,13 @@
 <script>
 export default {
   computed: {
-    todos: function() {
+    todos: function todos() {
       return this.$store.state.todos;
     },
-    incompleteTodosLength: function() {
+    incompleteTodosLength: function incompleteTodosLength() {
       return this.$store.getters.incompleteTodosLength;
     },
-    completedTodosLength: function() {
+    completedTodosLength: function completedTodosLength() {
       return this.$store.getters.completedTodosLength;
     },
   },

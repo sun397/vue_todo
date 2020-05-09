@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ListItem from '../ListItem';
+import ListItem from '../ListItem/index.vue';
 
 export default {
   components: {
@@ -18,9 +18,6 @@ export default {
   props: {
     todos: {
       type: Array,
-      default: function() {
-        return [];
-      },
     },
   },
 };

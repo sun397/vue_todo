@@ -19,8 +19,8 @@ const store = new Vuex.Store({
     emptyMessage: '',
   },
   getters: {
-    completedTodos: (state) => state.todos.filter((todo) => todo.completed),
-    incompleteTodos: (state) => state.todos.filter((todo) => !todo.completed),
+    completedTodos: state => state.todos.filter(todo => todo.completed),
+    incompleteTodos: state => state.todos.filter(todo => !todo.completed),
     completedTodosLength: (state, getters) => getters.completedTodos.length,
     incompleteTodosLength: (state, getters) => getters.incompleteTodos.length,
   },
@@ -74,9 +74,6 @@ const store = new Vuex.Store({
         return todoItem;
       });
     },
-    deleteTodo(state, payload) {
-      state.todos = payload.reverse();
-    }
   },
   actions: {
     setTodoFilter({ commit }, routeName) {
@@ -111,7 +108,7 @@ const store = new Vuex.Store({
       });
       axios.post('http://localhost:3000/api/todos/', postTodo).then(({ data }) => {
         commit('addTodo', data);
-        commit('hideError', data);
+        commit('hideError');
       }).catch((err) => {
         commit('showError', err.response);
       });
@@ -123,7 +120,7 @@ const store = new Vuex.Store({
         completed: !targetTodo.completed,
       }).then(({ data }) => {
         commit('editTodo', data);
-        commit('hideError', data);
+        commit('hideError');
       }).catch((err) => {
         commit('showError', err.response);
         commit('setEmptyMessage', err.null);
@@ -161,11 +158,17 @@ const store = new Vuex.Store({
       commit('initTargetTodo');
     },
     deleteTodo({ commit }, payload) {
-      axios.delete(`http://localhost:3000/api/todos/${payload}`).then(function({ data }) {
-        commit('deleteTodo', data.todos);
-        commit('hideError', data);
-      }).catch((err) => {
-        commit('showError', err.response);
+      return new Promise((resolve, reject) => {
+        axios
+          .delete(`http://localhost:3000/api/todos/${payload}`)
+          .then((response) => {
+            commit('hideError', response.data);
+            resolve();
+          })
+          .catch((err) => {
+            commit('showError', err.response);
+            reject();
+          });
       });
     },
   },
